@@ -1,4 +1,4 @@
-package com.example.Patron_Decorator;
+/*package com.example.Patron_Decorator;
 
 import com.example.IServicio;
 
@@ -19,4 +19,4 @@ public class DecoradorMasaje extends ServicioDecorator {
     public String obtenerDescripcion() {
         return super.obtenerDescripcion() + " + Masaje";
     }
-}
+}*/

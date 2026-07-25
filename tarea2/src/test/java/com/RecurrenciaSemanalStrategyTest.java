@@ -35,10 +35,10 @@ public class RecurrenciaSemanalStrategyTest {
         List<LocalDate> fechas = estrategia.calcularFechas(inicio, fin);
         
         assertEquals(4, fechas.size());
-        assertEquals(LocalDate.of(2026, 8, 3), fechas.get(0)); // Lunes
-        assertEquals(LocalDate.of(2026, 8, 5), fechas.get(1)); // Miércoles
-        assertEquals(LocalDate.of(2026, 8, 10), fechas.get(2)); // Lunes
-        assertEquals(LocalDate.of(2026, 8, 12), fechas.get(3)); // Miércoles
+        assertEquals(LocalDate.of(2026, 8, 3), fechas.get(0));
+        assertEquals(LocalDate.of(2026, 8, 5), fechas.get(1)); 
+        assertEquals(LocalDate.of(2026, 8, 10), fechas.get(2)); 
+        assertEquals(LocalDate.of(2026, 8, 12), fechas.get(3));
     }
 
     @Test

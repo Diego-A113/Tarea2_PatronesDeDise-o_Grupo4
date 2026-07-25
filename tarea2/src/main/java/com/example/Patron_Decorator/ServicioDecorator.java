@@ -1,4 +1,4 @@
-package com.example.Patron_Decorator;
+/*package com.example.Patron_Decorator;
 
 import java.time.LocalDate;
 
@@ -37,4 +37,4 @@ public abstract class ServicioDecorator implements IServicio {
     public String getNombre() {
         return servicioEnvuelto.getNombre();
     }
-}
+}*/
