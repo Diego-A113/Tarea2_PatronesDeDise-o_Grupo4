@@ -30,8 +30,6 @@ public class Paseo implements IServicio {
 
         EstadoReserva estado = this.historialEstados.get(fecha);
 
-        // Está disponible si nunca se ha agendado en esa fecha (null) 
-        // o si una reserva previa en ese día fue cancelada (cupo liberado)
         return estado == null || estado == EstadoReserva.CANCELADO;
     }
 
