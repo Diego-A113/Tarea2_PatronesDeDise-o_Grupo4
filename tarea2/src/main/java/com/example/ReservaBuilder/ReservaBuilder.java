@@ -119,6 +119,13 @@ public class ReservaBuilder implements IReservaBuilder {
             }
         }
 
+        if(reserva.getServicios().isEmpty()){
+
+            throw new IllegalStateException(
+            "Debe agregar al menos un servicio.");
+
+        }
+
         reserva.programarFechasRecurrentes();
 
         reserva.setEstado(EstadoReserva.EN_ESPERA);

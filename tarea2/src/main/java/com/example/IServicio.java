@@ -2,11 +2,10 @@ package com.example;
 
 import java.time.LocalDate;
 
-import com.reservabuilder.EstadoReserva;
 
 public interface IServicio {
 
-    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoReserva nuevoEstado);
+    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoDisponibilidad nuevoEstado);
 
     public double calcularPrecio();
 

@@ -91,7 +91,12 @@ public class Mascota {
     }
 
     public void setEdad(int edad) {
+        if(edad < 0){
+            throw new IllegalArgumentException("Edad inválida");
+        }
+
         this.edad = edad;
+
     }
 
     public TamanoMascota getTamano() {

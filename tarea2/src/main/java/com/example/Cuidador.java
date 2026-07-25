@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mascotabuilder.Mascota;
-import com.reservabuilder.EstadoReserva;
-import com.reservabuilder.Reserva;
+import com.example.Patron_Builder_Mascota.Mascota;
+import com.example.ReservaBuilder.Reserva;
+
+
 
 public class Cuidador {
 

@@ -1,6 +1,7 @@
 package com.example;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Centro {
@@ -12,12 +13,12 @@ public class Centro {
     private Administrador administrador;
     private LocalTime horaApertura;
     private LocalTime horaCierre;
-    private List<Restriccion> restricciones;
-    private List<PoliticaCancelacion> politicasCancelacion;
-    private List<IServicio> servicios;
-    private List<Cuidador> cuidadores;
-    private List<Promocion> promocionesVigentes;
-    private List<Paquete> paquetes;
+    private List<Restriccion> restricciones=new ArrayList<>();
+    private List<PoliticaCancelacion> politicasCancelacion=new ArrayList<>();
+    private List<IServicio> servicios=new ArrayList<>();
+    private List<Cuidador> cuidadores= new ArrayList<>();
+    private List<Promocion> promocionesVigentes=new ArrayList<>();
+    private List<Paquete> paquetes=new ArrayList<>();
 
     public void agregarServicio(IServicio servicio) {
         if (servicios.contains(servicio)) {
