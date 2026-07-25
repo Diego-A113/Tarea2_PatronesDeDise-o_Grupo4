@@ -3,6 +3,7 @@ package com.example;
 import java.util.List;
 
 import com.example.Patron_Builder_Mascota.Mascota;
+import com.example.ReservaBuilder.Reserva;
 
 public class Usuario {
 

@@ -1,11 +1,13 @@
 package com.example.ReservaBuilder;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.RecurrenciaStrategy.IRecurrenciaStrategy;
 import com.example.Cuidador;
+import com.example.EstadoDisponibilidad;
 import com.example.EstadoReserva;
 import com.example.IMetodoPago;
 import com.example.IServicio;
@@ -36,11 +38,37 @@ public class Reserva {
     }
 
     public void confirmar() {
-        this.estado.confirmar(this);
+        //this.estado.confirmar(this);
+        if(!verificarDisponibilidadServicios()){
+
+            notificarObservadores(
+            "No existen cupos disponibles.");
+
+            return;
+        }
+
+
+        cambiarEstadoServicios(EstadoDisponibilidad.OCUPADO);
+
+        estado = EstadoReserva.OCUPADO;
+
+
+        notificarObservadores(
+        "Reserva confirmada correctamente.");
+        
     }
 
     public void cancelar() {
-        this.estado.cancelar(this);
+        //this.estado.cancelar(this);
+        cambiarEstadoServicios(
+        EstadoDisponibilidad.DISPONIBLE);
+
+
+        estado = EstadoReserva.CANCELADO;
+
+
+        notificarObservadores(
+        "Reserva cancelada correctamente.");
     }
 
     public double calcularMonto() {
@@ -50,8 +78,8 @@ public class Reserva {
         }
 
         if (!esRecurrente) {
-            long diasUnicos = fechaInicio.until(fechaFin).getDays() + 1;
-            return totalServicios * diasUnicos;
+            long dias = ChronoUnit.DAYS.between(fechaInicio,fechaFin) + 1;
+            return totalServicios * dias;
         }
 
         return totalServicios * fechasAsistencia.size();
@@ -214,5 +242,52 @@ public class Reserva {
     void addServicio(IServicio servicio) {
         if (servicio != null)
             this.servicios.add(servicio);
+    }
+
+    public boolean verificarDisponibilidadServicios() {
+        List<LocalDate> fechas = obtenerFechasReserva();
+        for (LocalDate fecha : fechas) {
+            for (IServicio servicio : servicios) {
+                if (!servicio.verificarDisponibilidad(fecha)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public List<LocalDate> obtenerFechasReserva(){
+
+        if(esRecurrente){
+
+            return fechasAsistencia;
+
+        }
+
+
+        List<LocalDate> fechas = new ArrayList<>();
+
+
+        LocalDate actual = fechaInicio;
+
+
+        while(!actual.isAfter(fechaFin)){
+
+            fechas.add(actual);
+
+            actual = actual.plusDays(1);
+
+        }
+
+
+        return fechas;
+}
+
+    public void cambiarEstadoServicios(EstadoDisponibilidad estado) {
+        for (LocalDate fecha : obtenerFechasReserva()) {
+            for (IServicio servicio : servicios) {
+                servicio.cambiarEstadoPorFecha(fecha, estado);
+            }
+        }
     }
 }

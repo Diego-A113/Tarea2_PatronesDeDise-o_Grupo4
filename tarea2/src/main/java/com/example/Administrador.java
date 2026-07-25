@@ -1,13 +1,14 @@
 package com.example;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Administrador {
 
     private int id;
     private String nombre;
-    private List<Centro> centrosAdministrados;
+    private List<Centro> centrosAdministrados=new ArrayList<>();
 
     public void crearPromocion(Promocion promocion, Centro centro) {
         if (!this.centrosAdministrados.contains(centro)) {

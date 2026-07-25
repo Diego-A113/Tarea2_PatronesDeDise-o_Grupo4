@@ -9,21 +9,23 @@ public class Entrenamiento implements IServicio {
     private double precioBase;
     private String nombre = "Entrenamiento";
 
-    private Map<LocalDate, EstadoReserva> historialEstados = new HashMap<>();
+    private Map<LocalDate, EstadoDisponibilidad> historialEstados = new HashMap<>();
 
-    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoReserva nuevoEstado) {
-        this.historialEstados.put(fecha, nuevoEstado);
+    @Override
+    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoDisponibilidad nuevoEstado) {
+        if (nuevoEstado == EstadoDisponibilidad.OCUPADO) {
+            historialEstados.put(fecha, EstadoDisponibilidad.OCUPADO);
+        } else {
+            historialEstados.put(fecha, EstadoDisponibilidad.DISPONIBLE);
+        }
+
     }
 
     @Override
     public boolean verificarDisponibilidad(LocalDate fecha) {
-        EstadoReserva estado = this.historialEstados.getOrDefault(fecha, EstadoReserva.DISPONIBLE);
+        EstadoDisponibilidad estado =historialEstados.getOrDefault(fecha, EstadoDisponibilidad.DISPONIBLE);
 
-        if (estado == EstadoReserva.DISPONIBLE) {
-            return true;
-        } else {
-            return false;
-        }
+        return estado == EstadoDisponibilidad.DISPONIBLE;
     }
 
     @Override

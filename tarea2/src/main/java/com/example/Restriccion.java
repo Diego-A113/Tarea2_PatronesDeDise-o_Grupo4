@@ -1,6 +1,6 @@
 package com.example;
 
-import com.mascotabuilder.Mascota;
+import com.example.Patron_Builder_Mascota.Mascota;
 
 public class Restriccion {
 

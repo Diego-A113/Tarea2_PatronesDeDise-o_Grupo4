@@ -9,18 +9,18 @@ public class Hospedaje implements IServicio {
     private double precioBase;
     private String nombre = "Hospedaje";
 
-    private Map<LocalDate, EstadoReserva> historialEstados = new HashMap<>();
+    private Map<LocalDate, EstadoDisponibilidad> historialEstados = new HashMap<>();
 
     @Override
-    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoReserva nuevoEstado) {
+    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoDisponibilidad nuevoEstado) {
         this.historialEstados.put(fecha, nuevoEstado);
     }
 
     @Override
     public boolean verificarDisponibilidad(LocalDate fecha) {
-        EstadoReserva estado = this.historialEstados.getOrDefault(fecha, EstadoReserva.DISPONIBLE);
+        EstadoDisponibilidad estado = this.historialEstados.getOrDefault(fecha, EstadoDisponibilidad.DISPONIBLE);
 
-        if (estado == EstadoReserva.DISPONIBLE) {
+        if (estado == EstadoDisponibilidad.DISPONIBLE) {
             return true;
         } else {
             return false;

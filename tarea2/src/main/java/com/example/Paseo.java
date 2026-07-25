@@ -4,21 +4,19 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.reservabuilder.EstadoReserva;
-
 public class Paseo implements IServicio {
 
     private double precioBase;
     private String nombre = "Paseo";
 
-    private Map<LocalDate, EstadoReserva> historialEstados = new HashMap<>();
+    private Map<LocalDate, EstadoDisponibilidad> historialEstados = new HashMap<>();
 
     public Paseo(double precioBase) {
         this.precioBase = precioBase;
     }
 
     @Override
-    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoReserva nuevoEstado) {
+    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoDisponibilidad nuevoEstado) {
         if (fecha != null && nuevoEstado != null) {
             this.historialEstados.put(fecha, nuevoEstado);
         }
@@ -28,9 +26,9 @@ public class Paseo implements IServicio {
     public boolean verificarDisponibilidad(LocalDate fecha) {
         if (fecha == null) return false;
 
-        EstadoReserva estado = this.historialEstados.get(fecha);
+        EstadoDisponibilidad estado = this.historialEstados.get(fecha);
 
-        return estado == null || estado == EstadoReserva.CANCELADO;
+        return estado == null || estado == EstadoDisponibilidad.DISPONIBLE;
     }
 
     @Override
