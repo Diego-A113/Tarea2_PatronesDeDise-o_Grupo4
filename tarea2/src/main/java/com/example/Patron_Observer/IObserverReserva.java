@@ -1,4 +1,4 @@
-package com.example.observer;
+package com.example.Patron_Observer;
 
 import com.example.reservabuilder.Reserva;
 

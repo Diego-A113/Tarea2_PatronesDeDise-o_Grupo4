@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.List;
 
+import com.example.Patron_Builder_Mascota.Mascota;
+
 public class Usuario {
 
     private int id;
