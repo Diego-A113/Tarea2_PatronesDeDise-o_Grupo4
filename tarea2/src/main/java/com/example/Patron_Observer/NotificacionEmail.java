@@ -1,6 +1,8 @@
 package com.example.Patron_Observer;
 
-import com.example.reservabuilder.Reserva;
+import com.example.ReservaBuilder.Reserva;
+
+
 
 public class NotificacionEmail implements IObserverReserva {
     private String email;

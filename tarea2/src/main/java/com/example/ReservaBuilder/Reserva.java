@@ -1,0 +1,218 @@
+package com.example.ReservaBuilder;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.RecurrenciaStrategy.IRecurrenciaStrategy;
+import com.example.Cuidador;
+import com.example.EstadoReserva;
+import com.example.IMetodoPago;
+import com.example.IServicio;
+import com.example.Usuario;
+import com.example.Patron_Builder_Mascota.Mascota;
+import com.example.Patron_Observer.IObserverReserva;
+
+public class Reserva {
+    private int id;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private boolean esRecurrente;
+    private IRecurrenciaStrategy estrategiaRecurrencia;
+    private IMetodoPago metodoPago;
+    private EstadoReserva estado = EstadoReserva.EN_ESPERA;
+    private Usuario cliente;
+    private Mascota mascota;
+    private Cuidador cuidador;
+    private IServicio servicioBasico;
+    private boolean camaraEnVivo;
+    private boolean reporteTiempoReal;
+    private boolean atencionVeterinaria;
+    private List<IServicio> servicios = new ArrayList<>();
+    private List<LocalDate> fechasAsistencia = new ArrayList<>();
+    private List<IObserverReserva> observadores = new ArrayList<>();
+
+    protected Reserva() {
+    }
+
+    public void confirmar() {
+        this.estado.confirmar(this);
+    }
+
+    public void cancelar() {
+        this.estado.cancelar(this);
+    }
+
+    public double calcularMonto() {
+        double totalServicios = 0;
+        for (IServicio servicio : servicios) {
+            totalServicios += servicio.calcularPrecio();
+        }
+
+        if (!esRecurrente) {
+            long diasUnicos = fechaInicio.until(fechaFin).getDays() + 1;
+            return totalServicios * diasUnicos;
+        }
+
+        return totalServicios * fechasAsistencia.size();
+    }
+
+    public void programarFechasRecurrentes() {
+        if (this.estrategiaRecurrencia == null || this.fechaInicio == null || this.fechaFin == null) {
+            return;
+        }
+        this.esRecurrente = true;
+        this.fechasAsistencia.clear();
+        
+        List<LocalDate> fechasCalculadas = this.estrategiaRecurrencia.calcularFechas(this.fechaInicio, this.fechaFin);
+        this.fechasAsistencia.addAll(fechasCalculadas);
+    }
+
+    public void agregarObservador(IObserverReserva obs) {
+        if (obs != null && !this.observadores.contains(obs)) {
+            this.observadores.add(obs);
+        }
+    }
+
+    public void removerObservador(IObserverReserva obs) {
+        this.observadores.remove(obs);
+    }
+
+    public void notificarObservadores(String evento) {
+        for (IObserverReserva obs : observadores) {
+            obs.actualizar(this, evento);
+        }
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public EstadoReserva getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
+    }
+
+    public Usuario getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+
+    public Cuidador getCuidador() {
+        return cuidador;
+    }
+
+    void setCuidador(Cuidador cuidador) {
+        this.cuidador = cuidador;
+    }
+
+    public IServicio getServicioBasico() {
+        return servicioBasico;
+    }
+
+    void setServicioBasico(IServicio servicioBasico) {
+        this.servicioBasico = servicioBasico;
+        if (servicioBasico != null && !this.servicios.contains(servicioBasico)) {
+            this.servicios.add(servicioBasico);
+        }
+    }
+
+    public boolean isCamaraEnVivo() {
+        return camaraEnVivo;
+    }
+
+    void setCamaraEnVivo(boolean camaraEnVivo) {
+        this.camaraEnVivo = camaraEnVivo;
+    }
+
+    public boolean isReporteTiempoReal() {
+        return reporteTiempoReal;
+    }
+
+    void setReporteTiempoReal(boolean reporteTiempoReal) {
+        this.reporteTiempoReal = reporteTiempoReal;
+    }
+
+    public boolean isAtencionVeterinaria() {
+        return atencionVeterinaria;
+    }
+
+    void setAtencionVeterinaria(boolean atencionVeterinaria) {
+        this.atencionVeterinaria = atencionVeterinaria;
+    }
+
+    public boolean isEsRecurrente() {
+        return esRecurrente;
+    }
+
+    void setEsRecurrente(boolean esRecurrente) {
+        this.esRecurrente = esRecurrente;
+    }
+
+    public IRecurrenciaStrategy getEstrategiaRecurrencia() {
+        return estrategiaRecurrencia;
+    }
+
+    void setEstrategiaRecurrencia(IRecurrenciaStrategy estrategiaRecurrencia) {
+        this.estrategiaRecurrencia = estrategiaRecurrencia;
+    }
+
+    public IMetodoPago getMetodoPago() {
+        return metodoPago;
+    }
+
+    void setMetodoPago(IMetodoPago metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+
+    public List<LocalDate> getFechasAsistencia() {
+        return fechasAsistencia;
+    }
+
+    void addFechaAsistencia(LocalDate fecha) {
+        this.fechasAsistencia.add(fecha);
+    }
+
+    public List<IServicio> getServicios() {
+        return servicios;
+    }
+
+    void addServicio(IServicio servicio) {
+        if (servicio != null)
+            this.servicios.add(servicio);
+    }
+}

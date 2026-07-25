@@ -1,7 +1,7 @@
 package com;
 
 import com.example.Patron_Observer.IObserverReserva;
-
+import com.example.ReservaBuilder.Reserva;
 
 import static org.junit.jupiter.api.Assertions.*; 
 import org.junit.jupiter.api.AfterEach; 
