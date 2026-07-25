@@ -1,4 +1,4 @@
-package com.recurrenciastrategy;
+package com.RecurrenciaStrategy;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

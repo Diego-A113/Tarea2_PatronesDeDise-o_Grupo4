@@ -1,7 +1,8 @@
 package com;
 
-import com.example.reservabuilder.Reserva; 
-import com.example.observer.IObserverReserva; 
+import com.example.Patron_Observer.IObserverReserva;
+
+
 import static org.junit.jupiter.api.Assertions.*; 
 import org.junit.jupiter.api.AfterEach; 
 import org.junit.jupiter.api.BeforeEach; 
