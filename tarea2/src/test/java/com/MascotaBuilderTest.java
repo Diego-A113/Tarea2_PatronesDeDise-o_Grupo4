@@ -14,6 +14,8 @@ import com.example.TamanoMascota;
 import com.example.Patron_Builder_Mascota.Mascota;
 import com.example.Patron_Builder_Mascota.MascotaBuilder;
 
+/** * Pruebas unitarias para la clase MascotaBuilder
+ * Verifica que el Builder construya correctamente el objeto.*/ 
 public class MascotaBuilderTest {
     private MascotaBuilder builder;
 
