@@ -1,4 +1,4 @@
-package com.RecurrenciaStrategy;
+package com.recurrenciastrategy;
 
 
 import java.time.LocalDate;

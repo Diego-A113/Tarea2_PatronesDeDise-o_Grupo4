@@ -1,13 +1,15 @@
 package com;
 
+import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import com.example.Patron_Observer.IObserverReserva;
 import com.example.ReservaBuilder.Reserva;
-
-import static org.junit.jupiter.api.Assertions.*; 
-import org.junit.jupiter.api.AfterEach; 
-import org.junit.jupiter.api.BeforeEach; 
-import org.junit.jupiter.api.DisplayName; 
-import org.junit.jupiter.api.Test; 
 /** * Pruebas unitarias para la clase Reserva. 
  ** Se verifica el correcto funcionamiento del patrón Observer. */ 
 

@@ -2,14 +2,14 @@ package com.example.ReservaBuilder;
 
 import java.time.LocalDate;
 
-import com.RecurrenciaStrategy.IRecurrenciaStrategy;
+import com.example.Patron_Builder_Mascota.Mascota;
+import com.example.Patron_Observer.IObserverReserva;
+import com.recurrenciastrategy.IRecurrenciaStrategy;
 import com.example.Cuidador;
 import com.example.EstadoReserva;
 import com.example.IMetodoPago;
 import com.example.IServicio;
 import com.example.Usuario;
-import com.example.Patron_Builder_Mascota.Mascota;
-import com.example.Patron_Observer.IObserverReserva;
 
 public class ReservaBuilder implements IReservaBuilder {
     private Reserva reserva;
@@ -119,10 +119,10 @@ public class ReservaBuilder implements IReservaBuilder {
             }
         }
 
-        if(reserva.getServicios().isEmpty()){
+        if (reserva.getServicios().isEmpty()) {
 
             throw new IllegalStateException(
-            "Debe agregar al menos un servicio.");
+                    "Debe agregar al menos un servicio.");
 
         }
 

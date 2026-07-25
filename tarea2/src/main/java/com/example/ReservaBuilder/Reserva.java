@@ -5,15 +5,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.RecurrenciaStrategy.IRecurrenciaStrategy;
 import com.example.Cuidador;
 import com.example.EstadoDisponibilidad;
 import com.example.EstadoReserva;
 import com.example.IMetodoPago;
 import com.example.IServicio;
-import com.example.Usuario;
 import com.example.Patron_Builder_Mascota.Mascota;
 import com.example.Patron_Observer.IObserverReserva;
+import com.example.Usuario;
+import com.recurrenciastrategy.IRecurrenciaStrategy;
 
 public class Reserva {
     private int id;
@@ -34,7 +34,7 @@ public class Reserva {
     private List<LocalDate> fechasAsistencia = new ArrayList<>();
     private List<IObserverReserva> observadores = new ArrayList<>();
 
-    protected Reserva() {
+    public Reserva() {
     }
 
     public void confirmar() {

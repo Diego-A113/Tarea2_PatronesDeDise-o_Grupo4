@@ -2,13 +2,13 @@ package com.example.ReservaBuilder;
 
 import java.time.LocalDate;
 
-import com.RecurrenciaStrategy.IRecurrenciaStrategy;
+import com.example.Patron_Builder_Mascota.Mascota;
+import com.example.Patron_Observer.IObserverReserva;
 import com.example.Cuidador;
 import com.example.IMetodoPago;
 import com.example.IServicio;
 import com.example.Usuario;
-import com.example.Patron_Builder_Mascota.Mascota;
-import com.example.Patron_Observer.IObserverReserva;
+import com.recurrenciastrategy.IRecurrenciaStrategy;
 
 public interface IReservaBuilder {
 
