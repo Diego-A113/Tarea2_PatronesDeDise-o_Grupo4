@@ -1,10 +1,11 @@
-package com.RecurrenciaStrategy;
+package com.recurrenciastrategy;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecurrenciaDiariaStrategy implements IRecurrenciaStrategy {
+    
     public RecurrenciaDiariaStrategy() {}
 
     @Override

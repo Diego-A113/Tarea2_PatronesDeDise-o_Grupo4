@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import com.example.Patron_Observer.IObserverReserva;
 import com.example.ReservaBuilder.Reserva;
-/** * Pruebas unitarias para la clase Reserva. 
- ** Se verifica el correcto funcionamiento del patrón Observer. */ 
 
 public class ReservaTest { 
     private Reserva reserva; 
