@@ -1,13 +1,19 @@
 package com.example.Patron_Builder_Mascota;
 
+import com.example.TamanoMascota;
+
 public interface IMascotaBuilder {
-    IMascotaBuilder setDatosBasicos(String nombre, String especie, String raza);
+    IMascotaBuilder reset();
+    IMascotaBuilder setId(int id);
+    IMascotaBuilder setNombre(String nombre);
+    IMascotaBuilder setEspecie(String especie);
+    IMascotaBuilder setRaza(String raza);
+    IMascotaBuilder setTamano(TamanoMascota tamano);
+    IMascotaBuilder setEdad(int edad);
 
-    IMascotaBuilder setEdadYTamano(int edad, TamanoMascota tamano);
+    IMascotaBuilder agregarNecesidadEspecial(String necesidad);
 
-    IMascotaBuilder addNecesidadEspecial(String necesidad);
-
-    IMascotaBuilder setPreferenciasTrato(String preferencia);
+    IMascotaBuilder agregarPreferenciasTrato(String preferencia);
 
     Mascota build();
 }
