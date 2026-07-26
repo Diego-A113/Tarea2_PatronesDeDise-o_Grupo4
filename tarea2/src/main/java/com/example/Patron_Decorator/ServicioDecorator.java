@@ -1,8 +1,8 @@
-/*package com.example.Patron_Decorator;
+package com.example.Patron_Decorator;
 
 import java.time.LocalDate;
 
-import com.example.EstadoReserva;
+import com.example.EstadoDisponibilidad;
 import com.example.IServicio;
 
 public abstract class ServicioDecorator implements IServicio {
@@ -14,7 +14,7 @@ public abstract class ServicioDecorator implements IServicio {
     }
 
     @Override
-    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoReserva nuevoEstado) {
+    public void cambiarEstadoPorFecha(LocalDate fecha, EstadoDisponibilidad nuevoEstado) {
         servicioEnvuelto.cambiarEstadoPorFecha(fecha, nuevoEstado);
     }
 
@@ -37,4 +37,4 @@ public abstract class ServicioDecorator implements IServicio {
     public String getNombre() {
         return servicioEnvuelto.getNombre();
     }
-}*/
+}
