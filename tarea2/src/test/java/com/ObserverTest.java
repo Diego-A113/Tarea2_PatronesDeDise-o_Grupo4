@@ -11,18 +11,22 @@ import org.junit.jupiter.api.Test;
 import com.example.Patron_Observer.IObserverReserva;
 import com.example.ReservaBuilder.Reserva;
 
-public class ReservaTest { 
+public class ObserverTest {
     private Reserva reserva; 
     private ObserverPrueba observer; 
     
     private static class ObserverPrueba implements IObserverReserva { 
-        boolean notificado; int cantidadNotificaciones; 
-        String ultimoEvento; Reserva ultimaReserva; 
+        boolean notificado; 
+        int cantidadNotificaciones; 
+        String ultimoEvento; 
+        Reserva ultimaReserva; 
         
         @Override 
         public void actualizar(Reserva reserva, String evento) { 
-            notificado = true; cantidadNotificaciones++; 
-            ultimoEvento = evento; ultimaReserva = reserva; 
+            notificado = true; 
+            cantidadNotificaciones+=1; 
+            ultimoEvento = evento; 
+            ultimaReserva = reserva; 
         } 
     } 
         
@@ -61,4 +65,5 @@ public class ReservaTest {
         reserva.notificarObservadores("Reserva Confirmada"); 
         assertEquals(reserva, observer.ultimaReserva); 
     } 
+
 }
